@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^works/', include('works.urls', namespace='work')),
     #url(r'^', include('works.urls',)),
     url(r'^$', RedirectView.as_view(pattern_name='work:list'), name='home'),
+    url(r'^me/$', TemplateView.as_view(template_name="me.html"), name='me'),
 ]

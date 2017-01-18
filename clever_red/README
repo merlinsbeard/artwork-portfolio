@@ -1,0 +1,6 @@
+To use local settings
+$ python manage.py --settings=clever_red.settings.local
+
+For production
+$ export DJANGO_SETTINGS_MODULE=clever_red.settings.production
+$ python manage.py runserver

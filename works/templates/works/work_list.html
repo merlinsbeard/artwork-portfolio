@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="container">
+  <div class="row">
+{% for object in object_list %}
+      <div class="col s12 l6 m6">
+        <div class="card sticky-action {% cycle 'teal' 'orange' %} darken-2 z-depth-4">
+          <div class="card-image">
+            <img src="{{ object.image.url }}" alt="" class="activator">
+          </div>
+          <div class="card-content white-text">
+            <span class="card-title activator">{{ object.name }}<i class="material-icons right">more_vert</i></span>
+            <p>
+              {{ object.short_description }}
+            </p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title">{{ object.name}}<i class="material-icons right">close</i></span>
+            <p>
+              {{ object.short_description }}
+            </p>
+            <div class="center links">
+              <a href="{% url 'works:detail' object.slug %}" class="waves-effect btn-large">Learn More!</a>
+            </div>
+          </div>
+          <div class="card-action">
+              {% for tech in object.worktechnology_set.all %}
+              <div class="chip">{{ tech.name }}</div>
+              {% endfor %}
+              <a href="#modal"></a>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+</div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="parallax-container">
+  <div class="parallax"><img src="{{ object.image.url }}" class="desaturate"></div>
+</div>
+<div class="section white">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 m6 s12">
+        <div class="details">
+          <h2>{{ object.name}}</h2>
+          <p>{{ object.description }}</p>
+        </div>
+      </div>
+      <div class="col l6 m6 s12">
+        <div class="technology">
+          <h2>Technology<h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="gallery">
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+{{ object }}
+
+{% endblock %}

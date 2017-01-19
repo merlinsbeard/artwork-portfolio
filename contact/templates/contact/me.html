@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="container">
+  <header >
+    <div class="center">
+    <h4>{{ me.user.first_name }} {{ me.user.last_name }}</h4>
+    <h6>{{ me.short_description }}</h6>
+  </div>
+
+  </header>
+  <div class="contact-details center">
+      <p>{{ me.user.email }}</p>
+      <p>{{ me.phone }}</p>
+  </div>
+</div>
+
+
+  <div class="card-panel about-me teal lighten-4 ">
+    <div class="container">
+
+      <h5>About me</h5>
+      <p class="flow-text">
+        I've been developing python applications since 2012. Most of my projects are personal applications that makes my life easier and more enjoyable.
+         This ranges to simple scripts that scraps images from websites. A weather forecast script that plays. I use Django and flask for my web application frameworks.
+
+      </p>
+      <p class='flow-text'>Besides python I also have linux system admin experience. I've managed email hosting, dns configurations, web server configurations, and samba.
+       </p>
+
+    </div>
+  </div>
+  <div class="form">
+    <div class="container">
+      <h2>Get in touch</h2>
+
+        <form action="{% url 'contact:contact' %}" method="post">
+          {% csrf_token %}
+
+        {{ form }}
+      <button type="submit" class="btn">Submit</button>
+
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

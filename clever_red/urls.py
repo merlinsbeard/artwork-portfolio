@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^works/', include('works.urls', namespace='work')),
     #url(r'^', include('works.urls',)),
     url(r'^$', RedirectView.as_view(pattern_name='work:list'), name='home'),
-    url(r'^me/$', TemplateView.as_view(template_name="me.html"), name='me'),
+    #url(r'^me/$', TemplateView.as_view(template_name="me.html"), name='me'),
+    url(r'^me/', include('contact.urls', namespace='contact')),
 ]

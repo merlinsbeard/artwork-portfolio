@@ -20,29 +20,50 @@
     <header>
       <div class="container">
 
-        <h1><a href="{% url 'home' %}">WORK OF ART</a></h1>
+        <h1 class="center"><a href="{% url 'home' %}">WORK OF ART</a></h1>
 
       </div>
     </header>
       {% block body %}
       {% endblock %}
-      <div class="fixed-action-btn">
-        <a href="{% url 'me' %}" class="btn-large">
-          Contact me
+      <div class="fixed-action-btn click-to-toggle">
+        <a class="btn btn-large red">
+          <i class="large material-icons left">menu</i>Menu
         </a>
+        <ul>
+          <li>
+            <a href="{% url 'home' %}" class="btn-floating btn-large">
+
+              <i class="material-icons left">home</i>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'contact:me' %}" class="btn-floating btn-large">
+              <i class="material-icons">email</i>
+            </a>
+          </li>
+        </ul>
+
       </div>
+
+
+<div class="parallax-container">
+  <div class="parallax">
+    <h1>HOLA</h1>
+    <img src="http://i.imgur.com/SBgNYXh.png" alt="">
+  </div>
+</div>
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+     <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+     	<script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.js"></script>
      {% block jscript %}
      {% endblock %}
 
+    <script src="{% static 'js/clever_red.js' %}"></script>
 
-     <script type="text/javascript" language="javascript">
-     $(document).ready(function(){
-      $('.parallax').parallax();
-    });
-     </script>
   </body>
 </html>

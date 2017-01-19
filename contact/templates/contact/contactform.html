@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+  <form action="{% url 'contact:contact' %}" method="post">
+    {% csrf_token %}
+
+  {{ form }}
+<button type="submit" class="btn">Submit</button>
+
+  </form>
+</div>
+
+{% endblock %}

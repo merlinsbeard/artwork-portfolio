@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'works',
-    'contact',
 ]
 
 MIDDLEWARE = [
@@ -112,3 +111,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR.child('local_db.sqlite3')
+
+    }
+}
+
+
+STATIC_URL=os.environ['STATIC_URL']
+STATIC_ROOT=os.environ['STATIC_ROOT']
+MEDIA_URL=os.environ['MEDIA_URL']
+MEDIA_ROOT=os.environ['MEDIA_ROOT']

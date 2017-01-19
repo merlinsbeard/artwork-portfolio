@@ -3,5 +3,12 @@ h1{
 }
 
 .work-images img {
-  max-width: 100% ;
+  max-width: 50% ;
+}
+.grid-item {width:300px; margin-bottom:10px;}
+.grid-item--width2 {width:400px;}
+.grid img { width: 100%;}
+
+.parallax-container {
+height: 300px;
 }

@@ -2,3 +2,4 @@ Django==1.10.5
 gunicorn==19.6.0
 olefile==0.44
 Pillow==4.0.0
+Unipath==1.1

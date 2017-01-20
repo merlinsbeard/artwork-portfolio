@@ -1,0 +1,17 @@
+Use virtualenv with python3
+$ virtualenv -p /usr/bin/python3 venv
+$ source venv/bin/activate
+
+Install the requirements
+$ pip install -r requirements.txt
+
+To run using gunicorn
+$ gunicorn --bind 0.0.0.0:8002 clever_red.wsgi:application
+
+The production settings uses environment variables
+$ export STATIC_URL=''
+$ export MEDIA_URL=''
+$ export WORK_DATABASE
+
+The static folder contains the media folder
+

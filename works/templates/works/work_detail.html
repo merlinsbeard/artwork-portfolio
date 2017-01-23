@@ -10,6 +10,7 @@
       <div class="col l6 m6 s12">
         <div class="details">
           <h2>{{ object.name}}</h2>
+          <span>Link: <a href="{{ object.link }}">{{ object.link }}</a></span>
           <div class="card-panel teal">
             {% autoescape  off %}
           <p>{{ object.description | linebreaks }}</p>

@@ -4,3 +4,4 @@ media
 *.sqlite3
 __pycache__
 static/admin
+*.swp

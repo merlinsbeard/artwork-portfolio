@@ -13,6 +13,11 @@ class Me(models.Model):
     def __str__(self):
         return self.user.first_name + self.user.last_name
 
+    def full_name(self):
+        full_name = "{} {}".format(
+                self.user.first_name, self.user.last_name)
+        return full_name
+
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)

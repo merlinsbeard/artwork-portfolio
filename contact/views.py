@@ -27,3 +27,9 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'contact/contactform.html',{'form':form})
+
+def contact_me_mail(from_person, from_email, message):
+    # Formated email
+    subject = "New Contact from {}".format(from_person)
+    to = os.environ["EMAIL_MINE"]
+    send_mail(subject, from_email, [to], fail_silently=False)

@@ -1,5 +1,9 @@
 Django==1.10.5
+djangorestframework==3.5.3
 gunicorn==19.6.0
+httpie==0.9.9
 olefile==0.44
 Pillow==4.0.0
+Pygments==2.2.0
+requests==2.13.0
 Unipath==1.1

@@ -1,22 +1,13 @@
-"""clever_red URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.10/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import RedirectView, TemplateView
 from django.core.urlresolvers import reverse_lazy
+from works import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'works', views.WorkViewSet)
+router.register(r'workstech',views.WorkTechViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +16,9 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(pattern_name='work:list'), name='home'),
     #url(r'^me/$', TemplateView.as_view(template_name="me.html"), name='me'),
     url(r'^me/', include('contact.urls', namespace='contact')),
+    url(r'^work-api/', include(router.urls)),
+    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+
+
 ]
+

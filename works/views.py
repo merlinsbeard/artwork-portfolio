@@ -5,6 +5,7 @@ from contact.forms import ContactForm
 from contact.models import Me
 from .serializers import WorkSerializer, WorkTechSerializer
 from rest_framework import viewsets
+from rest_framework import permissions
 
 class IndexView(generic.ListView):
 
@@ -24,6 +25,7 @@ class WorkDetailView(generic.DetailView):
 class WorkViewSet(viewsets.ModelViewSet):
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
+    permission_classes=[permissions.IsAdminUser]
 
 class WorkTechViewSet(viewsets.ModelViewSet):
     queryset = WorkTechnology.objects.all()

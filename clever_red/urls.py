@@ -7,7 +7,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'works', views.WorkViewSet)
-router.register(r'workstech',views.WorkTechViewSet)
+#router.register(r'workstech',views.WorkTechViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

@@ -20,5 +20,8 @@ $ export HOST_USER=''
 $ export HOST_PASSWORD=''
 $ export EMAIL_TO=''
 
+Secret key
+$ export SECRET_KEY=''
+
 The static folder contains the media folder
 

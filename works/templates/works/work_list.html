@@ -19,7 +19,7 @@
               <div class="col s12">
                 <div class="card sticky-action {% cycle 'teal' 'orange' %} darken-2 z-depth-4">
                   <div class="card-image">
-                    <img src="{{ object.image.url }}" alt="" class="activator">
+                    <img src="{{ object.images.url }}" alt="" class="activator">
                   </div>
                   <div class="card-content white-text">
                     <span class="card-title activator">{{ object.name }}<i class="material-icons right">more_vert</i></span>
@@ -37,7 +37,7 @@
                     </div>
                   </div>
                   <div class="card-action">
-                      {% for tech in object.worktechnology_set.all %}
+                      {% for tech in object.techs.all %}
                       <div class="chip">{{ tech.name }}</div>
                       {% endfor %}
                       <a href="#modal"></a>

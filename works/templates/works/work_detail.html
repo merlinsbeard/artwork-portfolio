@@ -22,7 +22,7 @@
         <div class="technology">
           <h2>Technology</h2>
             <ol>
-             {% for tech in object.worktechnology_set.all %}
+             {% for tech in object.techs.all %}
               <li>{{ tech.name }}</li>
              {% endfor %}
             </ol>
@@ -33,7 +33,7 @@
     <div class="gallery">
       <div class="row">
         <div class="grid">
-          {% for img in object.workimage_set.all %}
+          {% for img in object.images.all %}
           <div class="grid-item">
             <img class="materialboxed" src="{{ img.image.url }}" alt="">
           </div>

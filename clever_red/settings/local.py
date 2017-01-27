@@ -6,7 +6,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': os.path.join(BASE_DIR, 'local.sqlite3'),
-        'NAME': BASE_DIR.child('ola.sqlite3')
+        #'NAME': BASE_DIR.child('ola.sqlite3')
+        'NAME': os.environ['WORK_DATABASE'],
     }
 }
 

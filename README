@@ -13,5 +13,12 @@ $ export STATIC_URL=''
 $ export MEDIA_URL=''
 $ export WORK_DATABASE
 
+For the EMAIL to work export a smtp details
+$ export EMAIL_HOST=''
+$ export EMAIL_PORT=''
+$ export HOST_USER=''
+$ export HOST_PASSWORD=''
+$ export EMAIL_TO=''
+
 The static folder contains the media folder
 

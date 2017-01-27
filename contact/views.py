@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Me, Contact
 from .forms import ContactForm
+from django.core.mail import send_mail
+import os
 
 
 class IndexView(generic.TemplateView):
@@ -22,6 +24,7 @@ def contact(request):
             data = form.cleaned_data
             post = form.save(commit=False)
             post.save()
+            contact_me_mail(data['name'], data['email'],data['message'])
             context = {'name': data['name'],}
             return render(request, 'contact/success.html',context)
     else:
@@ -31,5 +34,13 @@ def contact(request):
 def contact_me_mail(from_person, from_email, message):
     # Formated email
     subject = "New Contact from {}".format(from_person)
-    to = os.environ["EMAIL_MINE"]
-    send_mail(subject, from_email, [to], fail_silently=False)
+    message = """
+            from: {}
+            email: {}
+            message: {}
+            """.format(from_person, from_email, message)
+
+    to = os.environ['EMAIL_TO']
+    from_ = os.environ['EMAIL_HOST_USER']
+    send_mail(subject, message, from_,[to], fail_silently=False)
+

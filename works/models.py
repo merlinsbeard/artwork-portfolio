@@ -4,18 +4,18 @@ from django.utils.text import slugify
 
 class Work(models.Model):
     name = models.CharField(max_length=200)
-    short_description = models.CharField(max_length=300, blank=False)
-    description = models.TextField(blank=False)
+    short_description = models.CharField(max_length=300, blank=True)
+    description = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
-    link = models.URLField()
-    image = models.ImageField()
+    link = models.URLField(blank=True)
+    image = models.ImageField(blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.slug)
+        self.slug = slugify(self.name)
         super(Work, self).save(*args, **kwargs)
 
 

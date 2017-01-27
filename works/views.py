@@ -15,7 +15,10 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['form'] = ContactForm()
-        context['me'] = Me.objects.get()
+        try:
+            context['me'] = Me.objects.get()
+        except:
+            context['me'] = ''
         return context
 
 

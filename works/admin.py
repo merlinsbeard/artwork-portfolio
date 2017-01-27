@@ -29,7 +29,7 @@ class WorkTechInstanceInline(admin.TabularInline):
 
 class WorkAdmin(admin.ModelAdmin):
     inlines = [WorkImageInstanceInline, WorkTechInstanceInline]
-    readonly_fields = ("show_url",)
+    #readonly_fields = ("show_url",)
     formfield_overrides = mini_textfield()
 
     def show_url(self, instance):

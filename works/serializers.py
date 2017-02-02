@@ -7,8 +7,3 @@ class WorkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Work
         fields = ('name','link','image', 'techs') 
-
-class WorkTechSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = WorkTechnology
-        fields = ('name','work')

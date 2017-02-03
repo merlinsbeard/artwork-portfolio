@@ -3,7 +3,7 @@ from django.views import generic
 from .models import Work, WorkTechnology
 from contact.forms import ContactForm
 from contact.models import Me
-from .serializers import WorkSerializer, WorkTechSerializer
+from .serializers import WorkSerializer 
 from rest_framework import viewsets
 from rest_framework import permissions
 
@@ -30,6 +30,3 @@ class WorkViewSet(viewsets.ModelViewSet):
     serializer_class = WorkSerializer
     permission_classes=[permissions.IsAdminUser]
 
-class WorkTechViewSet(viewsets.ModelViewSet):
-    queryset = WorkTechnology.objects.all()
-    serializer_class = WorkTechSerializer

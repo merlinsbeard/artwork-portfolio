@@ -1,4 +1,8 @@
 {% extends 'layout.html' %}
+{% block extrahead %}
+
+{% endblock %}
+
 {% block body %}
 
 <div class="parallax-container">
@@ -31,16 +35,15 @@
     </div>
 
     <div class="gallery">
-      <div class="row">
-        <div class="grid">
-          {% for img in object.images.all %}
-          <div class="grid-item">
-            <img class="materialboxed" src="{{ img.image.url }}" alt="">
-          </div>
-          {% endfor %}
+        <div class="row">
+            <div id="animated-thumb">
+                {% for img in object.images.all %}
+                <a href="{{ img.image.url }}"><img src="{{ img.image.url }}" alt=""></a>
+                {% endfor %}
+            
+            </div>
+        
         </div>
-
-      </div>
     </div>
 
 

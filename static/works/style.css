@@ -1,5 +1,8 @@
 html{
 }
+.main_body {
+margin-bottom :5em;
+}
 h1{
   color: blue;
 }

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact
+from .models import Contact, Me
 
 
 class ContactForm(forms.ModelForm):
@@ -21,3 +21,11 @@ class ContactForm(forms.ModelForm):
                 """.format(self.name, self.email,
                         self.message, self.date_added)
         pass
+
+class MeForm(forms.ModelForm):
+    long_description = forms.CharField(
+            widget=forms.Textarea(
+                attrs={'class':'materialize-textarea'}))
+    class Meta:
+        model = Me
+        fields = ['short_description', 'long_description','phone', 'image']

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="me center">
+    
+    <img src="{{ form.instance.image.url }}" class="responsive-image">
+    </div>    
+  <div class="contact-details center">
+      <p>
+    {{ form.instance.full_name | title }}
+      </p>
+      <p>{{ form.instance.user.email }}</p>
+
+  </div>
+    <form action="{% url 'contact:update' %}" method="post"
+        enctype="multipart/form-data">
+    {% csrf_token %}
+
+  {{ form.as_p }}
+<button type="submit" class="btn">Submit</button>
+
+  </form>
+</div>
+
+{% endblock %}

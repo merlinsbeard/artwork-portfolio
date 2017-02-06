@@ -9,6 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'works', views.WorkViewSet)
 #router.register(r'workstech',views.WorkTechViewSet)
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^works/', include('works.urls', namespace='work')),

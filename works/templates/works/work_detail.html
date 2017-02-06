@@ -15,7 +15,7 @@
         <div class="details">
           <h2>{{ object.name}}</h2>
           <span>Link: <a href="{{ object.link }}">{{ object.link }}</a></span>
-          <div class="card-panel teal">
+          <div class="card-panel grey lighten-4 ">
             {% autoescape  off %}
           <p>{{ object.description | linebreaks }}</p>
           {% endautoescape %}

@@ -1,8 +1,13 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Contact
 
 
-class ContactForm(ModelForm):
+class ContactForm(forms.ModelForm):
+    name = forms.CharField(
+            widget=forms.TextInput(attrs={'class':'validate'}))
+    message = forms.CharField(
+            widget=forms.Textarea(
+                attrs={'class':'materialize-textarea'}))
     class Meta:
         model = Contact
         fields = ('name', 'email', 'message')

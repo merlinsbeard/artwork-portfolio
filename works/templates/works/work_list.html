@@ -17,11 +17,11 @@
         {% for object in object_list %}
             <div class="row">
               <div class="col s12">
-                <div class="card sticky-action {% cycle 'teal' 'orange' %} darken-2 z-depth-4">
+                <div class="card sticky-action grey lighten-4 z-depth-4">
                   <div class="card-image">
                     <img src="{{ object.image.url }}" alt="" class="activator">
                   </div>
-                  <div class="card-content white-text">
+                  <div class="card-content black-text">
                     <span class="card-title activator">{{ object.name }}<i class="material-icons right">more_vert</i></span>
                     <p>
                       {{ object.short_description }}
@@ -64,7 +64,7 @@
 
   </div>
   <div class="contact-details center">
-      <p>{{ me.user.email }}</p>
+      <p><a href="mailto:{{ me.user.email }}">{{ me.user.email }}</a></p>
       <p>{{ me.phone }}</p>
   </div>
 </div>
@@ -84,13 +84,34 @@
     <div class="container">
       <h2>Get in touch</h2>
 
-        <form action="{% url 'contact:contact' %}" method="post">
-          {% csrf_token %}
+    <form action="{% url 'contact:contact' %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
 
-        {{ form }}
-      <button type="submit" class="btn">Submit</button>
 
-        </form>
+        <div class="input-field">
+            {{ form.name.errors }}
+            <i class="material-icons prefix">account_circle</i>
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <div class="input-field">
+            {{ form.email.errors }}
+            <i class="material-icons prefix">email</i>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+        <div class="input-field">
+            {{ form.message.errors }}
+            <i class="material-icons prefix">mode_edit</i>
+            {{ form.message }}
+            {{ form.message.label_tag }}
+        </div>
+
+
+    <button type="submit" class="btn">Submit</button>
+
+    </form>
     </div>
   </div>
 </div>

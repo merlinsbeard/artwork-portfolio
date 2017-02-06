@@ -34,6 +34,7 @@ def contact(request):
         form = ContactForm()
     return render(request, 'contact/contactform.html',{'form':form})
 
+# REMOVE THIS when sendmail is done in models.py
 def contact_me_mail(from_person, from_email, message):
     # Formated email
     subject = "New Contact from {}".format(from_person)

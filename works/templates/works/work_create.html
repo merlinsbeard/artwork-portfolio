@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+    <form action="{% url 'works:add' %}" method="post"
+        enctype="multipart/form-data">
+    {% csrf_token %}
+
+  {{ form.as_p }}
+  {{ tech_form.as_p}}
+<button type="submit" class="btn">Submit</button>
+
+  </form>
+
+</div>
+{% endblock %}

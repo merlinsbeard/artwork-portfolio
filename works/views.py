@@ -1,14 +1,15 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.views import generic
-from .models import Work, WorkTechnology
+from .models import Work
 from contact.forms import ContactForm
 from contact.models import Me
-from .serializers import WorkSerializer 
+from .serializers import WorkSerializer
 from rest_framework import viewsets
 from rest_framework import permissions
 from .forms import WorkForm, TechInlineFormSet
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
 
 class IndexView(generic.ListView):
 
@@ -28,6 +29,7 @@ class IndexView(generic.ListView):
 class WorkDetailView(generic.DetailView):
     model = Work
 
+
 @method_decorator(login_required, name='dispatch')
 class WorkUpdateView(generic.UpdateView):
     model = Work
@@ -35,12 +37,12 @@ class WorkUpdateView(generic.UpdateView):
     #fields = ('name','short_description', 'description',
     #        'slug','link','image','hidden', 'work.images')
 
+
 @method_decorator(login_required, name='dispatch')
 class WorkCreateView(generic.CreateView):
     model = Work
     form_class = WorkForm
     template_name = 'works/work_create.html'
-
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -48,12 +50,11 @@ class WorkCreateView(generic.CreateView):
         form = self.get_form(form_class)
         tech_form = TechInlineFormSet()
         return self.render_to_response(
-                 self.get_context_data(
-                    form=form, tech_form=tech_form)
-                        )
+                self.get_context_data(
+                    form=form, tech_form=tech_form))
+
 
 class WorkViewSet(viewsets.ModelViewSet):
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
-    permission_classes=[permissions.IsAdminUser]
-
+    permission_classes = [permissions.IsAdminUser]

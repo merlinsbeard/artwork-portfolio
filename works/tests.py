@@ -10,14 +10,12 @@ def create_work(name):
 
 class WorkMethodTests(TestCase):
 
-
     # Models
     def test_slug_save(self):
         art_work = create_work('new artwork')
-        self.assertEqual(art_work.slug,"new-artwork")
-
+        self.assertEqual(art_work.slug, "new-artwork")
 
     # Pages
     def test_homepage(self):
         response = self.client.get('/works/')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)

@@ -1,7 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import RedirectView, TemplateView
-from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 from works import views
 from rest_framework import routers
 
@@ -19,7 +18,5 @@ urlpatterns = [
     url(r'^me/', include('contact.urls', namespace='contact')),
     url(r'^work-api/', include(router.urls)),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
-
-
+    url('^', include('django.contrib.auth.urls')),
 ]
-

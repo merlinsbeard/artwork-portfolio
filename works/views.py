@@ -7,8 +7,7 @@ from .serializers import WorkSerializer
 from rest_framework import viewsets
 from rest_framework import permissions
 from .forms import WorkForm, TechInlineFormSet
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(generic.ListView):
@@ -20,7 +19,7 @@ class IndexView(generic.ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['form'] = ContactForm()
         try:
-            context['me'] = Me.objects.get()
+            context['me'] = Me.objects.get(slug='me')
         except:
             context['me'] = ''
         return context
@@ -30,16 +29,14 @@ class WorkDetailView(generic.DetailView):
     model = Work
 
 
-@method_decorator(login_required, name='dispatch')
-class WorkUpdateView(generic.UpdateView):
+class WorkUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Work
     form_class = WorkForm
     #fields = ('name','short_description', 'description',
     #        'slug','link','image','hidden', 'work.images')
 
 
-@method_decorator(login_required, name='dispatch')
-class WorkCreateView(generic.CreateView):
+class WorkCreateView(LoginRequiredMixin, generic.CreateView):
     model = Work
     form_class = WorkForm
     template_name = 'works/work_create.html'
@@ -50,8 +47,8 @@ class WorkCreateView(generic.CreateView):
         form = self.get_form(form_class)
         tech_form = TechInlineFormSet()
         return self.render_to_response(
-                self.get_context_data(
-                    form=form, tech_form=tech_form))
+                        self.get_context_data(
+                            form=form, tech_form=tech_form))
 
 
 class WorkViewSet(viewsets.ModelViewSet):

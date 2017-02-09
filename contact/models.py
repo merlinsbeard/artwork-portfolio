@@ -9,6 +9,7 @@ class Me(models.Model):
     long_description = models.TextField()
     image = models.ImageField()
     phone = models.CharField(max_length=40)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.user.first_name + self.user.last_name

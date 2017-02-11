@@ -1,4 +1,6 @@
 from .base import *
+import environ
+
 
 DEBUG = True
 
@@ -38,8 +40,24 @@ REST_FRAMEWORK = {
 
 EMAIL_USE_TLS=True
 
-EMAIL_HOST=os.environ['EMAIL_HOST']
-EMAIL_PORT=os.environ['EMAIL_PORT']
-EMAIL_HOST_USER=os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD=os.environ['EMAIL_HOST_PASSWORD']
+#EMAIL_HOST=os.environ['EMAIL_HOST']
+#EMAIL_PORT=os.environ['EMAIL_PORT']
+#EMAIL_HOST_USER=os.environ['EMAIL_HOST_USER']
+#EMAIL_HOST_PASSWORD=os.environ['EMAIL_HOST_PASSWORD']
 SECRET_KEY=os.environ['SECRET_KEY']
+
+root = environ.Path(__file__) - 3
+env = environ.Env()
+environ.Env.read_env(root.path('.localenv')())
+
+#APPLE = root
+#ORANGE = root.path('.env')()
+GRAPE = env.email()
+
+email_settings = env.email()
+
+EMAIL_HOST_PASSWORD=email_settings['EMAIL_HOST_PASSWORD']
+EMAIL_HOST=email_settings['EMAIL_HOST']
+EMAIL_PORT=email_settings['EMAIL_PORT']
+EMAIL_HOST_USER=email_settings['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD=email_settings['EMAIL_HOST_PASSWORD']

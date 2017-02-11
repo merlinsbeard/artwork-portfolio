@@ -1,0 +1,3 @@
+DEBUG=False
+EMAIL_URL=smtp://local@localhost.ph:localpass@smtp.localhost.com:25
+DATABASE_URL=sqlite:////vagrant/clever_red/local_db.sqlite3

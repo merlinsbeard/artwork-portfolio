@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'works',
     'contact',
     'rest_framework',
+    'simple_markdown_tag',
+
 ]
 
 MIDDLEWARE = [

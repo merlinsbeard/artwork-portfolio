@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load markdown %}
 {% block body %}
 
 
@@ -73,9 +74,11 @@
     <div class="container">
 
       <h5>About me</h5>
+      {% autoescape off %}
       <div class="flow-text">
-        {{ me.long_description | linebreaks }}      
+        {{ me.long_description | markdown}}      
       </div >
+      {% endautoescape %}
 
     </div>
   </div>

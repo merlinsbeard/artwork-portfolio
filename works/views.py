@@ -47,8 +47,8 @@ class WorkCreateView(LoginRequiredMixin, generic.CreateView):
         form = self.get_form(form_class)
         tech_form = TechInlineFormSet()
         return self.render_to_response(
-                        self.get_context_data(
-                            form=form, tech_form=tech_form))
+                self.get_context_data(
+                    form=form, tech_form=tech_form))
 
 
 class WorkViewSet(viewsets.ModelViewSet):

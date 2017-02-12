@@ -9,5 +9,6 @@ urlpatterns = [
         # /form
 
         url(r'^contact/$', views.contact, name='contact'),
+        # /me/update
         url(r'^update/$', views.MeUpdateView.as_view(), name='update'),
 ]

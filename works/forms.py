@@ -1,5 +1,5 @@
 from django import forms
-from .models import Work, WorkTechnology
+from .models import Work, WorkTechnology, WorkImage
 
 
 class WorkForm(forms.ModelForm):
@@ -15,6 +15,11 @@ class WorkForm(forms.ModelForm):
                 'slug', 'link', 'image', 
                 ]
 
+class TechForm(forms.ModelForm):
+    class Meta:
+        model = WorkTechnology
+        fields=('name',)
+
 
 TechInlineFormSet = forms.inlineformset_factory(
         Work, WorkTechnology,
@@ -22,7 +27,18 @@ TechInlineFormSet = forms.inlineformset_factory(
         fields=('name',)
         )
 
-class TechForm(forms.ModelForm):
+class ImageForm(forms.ModelForm):
+    description = forms.CharField(
+            widget=forms.Textarea(
+                attrs={'class': 'materialize-textarea'}))
     class Meta:
-        model = WorkTechnology
-        fields=('name',)
+        model = WorkImage
+        fields=('image', 'description')
+
+ImageInlineFormSet = forms.inlineformset_factory(
+        Work, WorkImage,
+        extra=2,
+        form=ImageForm,
+        #fields= ('image', 'description')
+        )
+

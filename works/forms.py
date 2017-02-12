@@ -12,7 +12,7 @@ class WorkForm(forms.ModelForm):
         model = Work
         fields = [
                 'name', 'short_description', 'description',
-                'slug', 'link', 'image', 'hidden',
+                'slug', 'link', 'image', 
                 ]
 
 
@@ -21,3 +21,8 @@ TechInlineFormSet = forms.inlineformset_factory(
         extra=1,
         fields=('name',)
         )
+
+class TechForm(forms.ModelForm):
+    class Meta:
+        model = WorkTechnology
+        fields=('name',)

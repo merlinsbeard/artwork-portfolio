@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Me
 from .forms import ContactForm, MeForm
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 import os
 
 
@@ -62,3 +64,5 @@ class MeUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.me
+        #return self.request.user
+

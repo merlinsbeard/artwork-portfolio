@@ -8,7 +8,34 @@
     {% csrf_token %}
 
   {{ form.as_p }}
-  {{ tech_form }}
+  <h3>Technologies</h3>
+  {{ tech_form.management_form }}
+  <p>
+  
+  {% for f in tech_form %}
+    <br>
+    
+    {% for hidden in f.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    {{ f.name.label }}{{ f.name }}
+
+    {% if f.name.value %}
+        {{ f.DELETE }}
+        <label for="id_{{ f.DELETE.html_name }}">
+            {{ f.DELETE.name }}
+        
+        </label>
+    {% endif %}
+  </p>
+  <br>
+  
+
+
+  {% endfor %}
+
+  <h3>Images</h3>
   {{ image_form.as_p }}
 <button type="submit" class="btn">Submit</button>
 

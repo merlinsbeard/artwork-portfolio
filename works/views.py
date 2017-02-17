@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .forms import WorkForm, TechInlineFormSet, ImageInlineFormSet
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -70,7 +71,7 @@ class WorkUpdateView(LoginRequiredMixin, generic.UpdateView):
         form.save()
         tech_form.save()
         image_form.save()
-        return reverse('works:list')
+        return HttpResponseRedirect(self.object.get_absolute_url())
 
 
 

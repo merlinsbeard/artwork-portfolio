@@ -12,7 +12,7 @@ class WorkForm(forms.ModelForm):
         model = Work
         fields = [
                 'name', 'short_description', 'description',
-                'slug', 'link', 'image', 
+                 'link', 'image',
                 ]
 
 class TechForm(forms.ModelForm):

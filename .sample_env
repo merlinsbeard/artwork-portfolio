@@ -6,10 +6,10 @@ EMAIL_URL=smtp://local@localhost.ph:localpass@smtp.localhost.com:25
 # DATABASE SETUP 
 
 # For SQLITE3
-DATABASE_URL=sqlite:////home/caffe/artwork/local_db.sqlite3
+# DATABASE_URL=sqlite:////vagrant/clever_red/local_db.sqlite3
 #
 
-#DATABASE_URL=pgsql://artworkuser:artwork@localhost/artwork
+DATABASE_URL=pgsql://artworkuser:artwork@localhost/artwork
 
 # STATIC and MEDIA SETTINGS
 STATIC_URL='http://localhost:8080/static/'

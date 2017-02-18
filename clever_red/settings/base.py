@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'contact',
     'rest_framework',
     'simple_markdown_tag',
+    'works_api',
 
 ]
 

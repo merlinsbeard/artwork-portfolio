@@ -5,7 +5,8 @@ root = environ.Path(__file__) - 3
 env = environ.Env()
 environ.Env.read_env(root.path('.prodenv')())
 
-DEBUG = env('DEBUG')
+#DEBUG = env('DEBUG')
+DEBUG = False
 REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAdminUser',

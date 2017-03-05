@@ -79,8 +79,11 @@ Copy .localenv to .prodenv and fill the proper environment variables
 Gunicorn
 ` $ gunicorn --bind 0.0.0.0:8000 clever_red.wsgi:application `
 
+Docker
+` $ docker build -t artwork . `
+
 TODO
 -----
-- [ ] Login/logout Link in the layout
+- [x] Login/logout Link in the layout
 - [ ] Inline forms for work details
 - [ ] API POST, DELETE, and PUT 

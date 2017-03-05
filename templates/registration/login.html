@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<div class="container">
 
 <h1>Login Form</h1>
 
@@ -10,5 +11,7 @@
     <button type="submit" class="btn">Submit</button>
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
+</div>
+
 
 {% endblock %}

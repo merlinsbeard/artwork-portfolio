@@ -33,7 +33,6 @@ EMAIL_HOST_PASSWORD=email_settings['EMAIL_HOST_PASSWORD']
 # DATABASE CONFIG
 DATABASES = {
     'default': env.db(),
-    
 }
 # STATIC and MEDIA settings
 STATIC_URL=env('STATIC_URL')

@@ -9,6 +9,7 @@ httpie==0.9.9
 markdown2==2.3.3
 olefile==0.44
 Pillow==4.0.0
+psycopg2==2.7.1
 Pygments==2.2.0
 ratelim==0.1.6
 requests==2.13.0

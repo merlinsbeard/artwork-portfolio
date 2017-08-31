@@ -1,0 +1,20 @@
+DEBUG=False
+
+# EMAIL SETUP
+EMAIL_URL=smtp://local@localhost.ph:localpass@smtp.localhost.com:25
+
+# DATABASE SETUP 
+
+# For SQLITE3
+DATABASE_URL=sqlite:////artwork/artwork.sqlite3
+#
+
+
+# STATIC and MEDIA SETTINGS
+STATIC_URL='http://localhost:8080/static/'
+STATIC_ROOT='/artwork/static/'
+MEDIA_URL='http://localhost:8080/static/media/'
+MEDIA_ROOT='/artwork/static/media/'
+
+EMAIL_TO='hallocaffeine@gmail.com'
+SECRET_KEY='i!04_!5#_xxqb%rxtjj@y3wp=nw&lt(j7r&=j7i=k$8s03-l06'

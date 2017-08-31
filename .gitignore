@@ -5,5 +5,4 @@ media
 __pycache__
 static/admin
 *.swp
-.prodenv
 .tox/

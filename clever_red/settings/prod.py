@@ -41,6 +41,5 @@ DATABASES = {
 # STATIC and MEDIA settings
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-MEDIA_URL='/static/media/'
-MEDIA_ROOT= os.path.join(BASE_DIR, "media")
-
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN','NONE')

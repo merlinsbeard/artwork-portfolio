@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'simple_markdown_tag',
     'works_api',
-
+    'storages',
 ]
 
 MIDDLEWARE = [

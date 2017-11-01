@@ -1,0 +1,21 @@
+html{
+}
+.main_body {
+margin-bottom :5em;
+}
+
+.work-images img {
+  max-width: 50% ;
+}
+.grid-item {width:300px; margin-bottom:10px;}
+.grid-item--width2 {width:400px;}
+.grid img { width: 100%;}
+
+.parallax-container {
+height: 300px;
+}
+.me img{
+    max-width:250px;
+    margin-top:1em;
+}
+div#animated-thumb img { max-width: 250px; }

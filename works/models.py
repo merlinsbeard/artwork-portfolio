@@ -9,7 +9,7 @@ class Work(models.Model):
     description = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
     link = models.URLField(blank=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to="work-banner", blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):

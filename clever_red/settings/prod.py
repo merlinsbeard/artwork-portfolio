@@ -28,11 +28,18 @@ EMAIL_HOST_PASSWORD=email_settings['EMAIL_HOST_PASSWORD']
 
 # DATABASE CONFIG
 DATABASES = {
-    'default': env.db(),
-    
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'artwork'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
 }
+
 # STATIC and MEDIA settings
-STATIC_URL=env('STATIC_URL')
-STATIC_ROOT=env('STATIC_ROOT')
-MEDIA_URL=env('MEDIA_URL')
-MEDIA_ROOT=env('MEDIA_ROOT')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = '/static/'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN','NONE')

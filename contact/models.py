@@ -7,7 +7,7 @@ class Me(models.Model):
     user = models.OneToOneField(User)
     short_description = models.CharField(max_length=300)
     long_description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to="me")
     phone = models.CharField(max_length=40)
     slug = models.SlugField(unique=True)
 

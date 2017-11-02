@@ -80,10 +80,61 @@ Gunicorn
 ` $ gunicorn --bind 0.0.0.0:8000 clever_red.wsgi:application `
 
 Docker
-` $ docker build -t artwork . `
+
+1. Create docker image first  
+```bash
+$ git clone https://github.com/merlinsbeard/artwork-portfolio.git
+$ cd artwork-portfolio
+$ docker build -t artwork:latest .
+```
+
+2. Update .prod.env for configurations  
+
+```bash
+$ vim .prod.env
+
+EMAIL_URL=smtp://user@user.ph:password@smtp.localhost.com:587
+EMAIL_TO='my_email@gmail.com'
+SECRET_KEY='i!04_!5#_i=k$8s03-l06'
+
+```
+
+3. Create Docker Database
+
+```bash
+# Create Docker network first
+$ docker network create --driver bridge artwork
+# Create database
+$ docker run --name artwork_db \
+> --network artwork \
+> --env POSTGRES_DB=artwork \
+> -d postgres:latest
+```
+
+4. Run Container with environment variables
+
+```bash
+$ docker run --name artwork \
+> --network artwork \
+> --env DB_HOST=artwork_db \
+> --env DROPBOX_OAUTH2_TOKEN=my-token \
+> -p 8000:8000 \
+> -v $PWD/.prodenv:/artwork/.prodenv \
+> -d artwork:latest
+```
+
+5. Migrate Database and create superuser
+
+```bash
+$ docker exec -it artwork python manage.py migrate
+$ docker exec -it artwork python manage.py createsuperuer
+```
+
+6. Check browser and open in `localhost:8000`
 
 TODO
 -----
 - [x] Login/logout Link in the layout
+- [x] Dockerize App
 - [ ] Inline forms for work details
 - [ ] API POST, DELETE, and PUT 

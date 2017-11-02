@@ -2,11 +2,10 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Me
 from .forms import ContactForm, MeForm
-from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.conf import settings
 import os
 
 
@@ -50,7 +49,8 @@ def contact_me_mail(from_person, from_email, message):
             """.format(from_person, from_email, message)
 
     to = os.environ['EMAIL_TO']
-    from_ = os.environ['EMAIL_HOST_USER']
+    to = settings.EMAIL_TO
+    from_ = settings.EMAIL_HOST_USER
     send_mail(subject, message, from_, [to], fail_silently=False)
 
 
@@ -64,5 +64,3 @@ class MeUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.me
-        #return self.request.user
-

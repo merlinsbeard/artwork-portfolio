@@ -3,7 +3,7 @@ import environ
 
 root = environ.Path(__file__) - 3
 env = environ.Env()
-environ.Env.read_env(root.path('.prodenv')())
+environ.Env.read_env(root.path('config/prod.env')())
 
 #DEBUG = env('DEBUG')
 DEBUG = False
@@ -39,3 +39,19 @@ STATIC_URL = '/static/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME', 'benray-artwork')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+        },
+    }
+}

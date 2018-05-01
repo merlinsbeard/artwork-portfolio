@@ -6,7 +6,7 @@ env = environ.Env()
 environ.Env.read_env(root.path('.prodenv')())
 
 #DEBUG = env('DEBUG')
-DEBUG = True
+DEBUG = False
 REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAdminUser',

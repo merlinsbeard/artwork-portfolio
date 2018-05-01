@@ -1,6 +1,10 @@
 Artwork
 ====
 
+
+[ ![Codeship Status for merlinsbeard/artwork-portfolio](https://app.codeship.com/projects/a83b97c0-2f40-0136-11f2-6a55797ecc24/status?branch=master)](https://app.codeship.com/projects/288356)
+
+
 Contains the source code for my [portfolio
 website](https://benray.dailywarrior.ph). Uses Django as the primary framework.
 Still work in progress

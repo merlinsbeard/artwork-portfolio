@@ -16,7 +16,7 @@ EMAIL_USE_TLS=True
 
 root = environ.Path(__file__) - 3
 env = environ.Env()
-environ.Env.read_env(root.path('.localenv')())
+environ.Env.read_env(root.path('config/local.env')())
 
 GRAPE = env.email()
 DEBUG = env('DEBUG')

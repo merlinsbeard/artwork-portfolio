@@ -3,7 +3,7 @@ import environ
 
 root = environ.Path(__file__) - 3
 env = environ.Env()
-environ.Env.read_env(root.path('.prodenv')())
+environ.Env.read_env(root.path('config/prod.env')())
 
 #DEBUG = env('DEBUG')
 DEBUG = False

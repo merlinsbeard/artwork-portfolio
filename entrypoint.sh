@@ -6,7 +6,7 @@ exec gunicorn clever_red.wsgi:application \
     --bind 0.0.0.0:8000 \
     --name artwork \
     --workers 2 \
-    --log-level=debug \
+    --log-level=info \
     --access-logfile - \
     --error-logfile - \
 "$@"

@@ -1,6 +1,10 @@
 Artwork
 ====
 
+
+[ ![Codeship Status for merlinsbeard/artwork-portfolio](https://app.codeship.com/projects/a83b97c0-2f40-0136-11f2-6a55797ecc24/status?branch=master)](https://app.codeship.com/projects/288356)
+
+
 Contains the source code for my [portfolio
 website](https://benray.dailywarrior.ph). Uses Django as the primary framework.
 Still work in progress
@@ -132,9 +136,15 @@ $ docker exec -it artwork python manage.py createsuperuer
 
 6. Check browser and open in `localhost:8000`
 
-TODO
------
-- [x] Login/logout Link in the layout
-- [x] Dockerize App
-- [ ] Inline forms for work details
-- [ ] API POST, DELETE, and PUT 
+
+## Environment Variables
+
+| Name | Description |
+|------|-------------|
+| DB_HOST | url of database |
+| DB_NAME | Database name |
+| DB_USER | Database Username |
+| DB_PASSWORD | Database Password |
+| DB_PORT | Database Port |
+| GS_BUCKET_NAME |  Google storage bucket name |
+| GOOGLE_APPLICATION_CREDENTIALS | Path to service account JSON keyfile [see more](https://cloud.google.com/storage/docs/authentication#generating-a-private-key)

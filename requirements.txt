@@ -31,3 +31,4 @@ urllib3==1.22
 user-agents==1.0.1
 virtualenv==15.1.0
 whitenoise==3.3.0
+google-cloud==0.32.0

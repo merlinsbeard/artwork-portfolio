@@ -11,7 +11,7 @@ dropbox==8.4.0
 geocoder==1.20.0
 gunicorn==19.6.0
 idna==2.6
-markdown2==2.3.3
+markdown2==2.3.5
 olefile==0.44
 packaging==16.8
 Pillow==4.0.0

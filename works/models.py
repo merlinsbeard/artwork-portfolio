@@ -25,7 +25,8 @@ class Work(models.Model):
 
 
 class WorkImage(models.Model):
-    name = models.ForeignKey(Work, related_name='images')
+    name = models.ForeignKey(Work, related_name='images',
+            on_delete=models.CASCADE)
     image = models.ImageField()
     description = models.TextField()
 
@@ -34,7 +35,7 @@ class WorkImage(models.Model):
 
 
 class WorkTechnology(models.Model):
-    work = models.ForeignKey(Work, related_name='techs')
+    work = models.ForeignKey(Work, related_name='techs', on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 

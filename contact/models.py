@@ -4,7 +4,7 @@ import datetime
 
 
 class Me(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     short_description = models.CharField(max_length=300)
     long_description = models.TextField()
     image = models.ImageField(upload_to="me")

@@ -1,0 +1,61 @@
+image: docker:latest
+
+stages:
+  - test
+  - container_push
+  - deploy_container
+
+before_script:
+  - apk update
+  - apk add git openssh
+  - mkdir -p ~/.ssh
+  - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - ssh-keyscan -H $CLUSTER_DOMAIN > ~/.ssh/known_hosts
+  - chmod 600 -R ~/.ssh
+  - git config --global user.email "$USER_EMAIL"
+  - git config --global user.name "$USER_NAME"
+
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+test_commits:
+  image: python:3.6
+  stage: test
+  before_script:
+    - echo "DATABASE_URL=psql://postgres:postgres@postgres/test" > config/prod.env
+    - echo "EMAIL_URL=smtp://local@localhost.ph:localpass@smtp.localhost.com:25" >> config/prod.env
+    - echo "SECRET_KEY='gitlabsecret21321321'" >> config/prod.env
+    - echo "EMAIL_TO='hallocaffeine@gmail.com'" >> config/prod.env
+    - export DJANGO_SETTINGS_MODULE=clever_red.settings.prod
+    - pip install -r requirements.txt
+  script:
+    - python manage.py test --settings=clever_red.settings.prod
+  variables:
+    DJANGO_SETTINGS_MODULE: "clever_red.settings.prod"
+    POSTGRES_DB: "test"
+  services:
+    - postgres:10
+
+push_docker:
+  stage: container_push
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+    - docker push $CI_REGISTRY_IMAGE
+  services:
+    - docker:dind
+  only:
+    - tags
+
+deploy:
+  stage: deploy_container
+  script:
+    - ssh $CLUSTER_USER@$CLUSTER_DOMAIN 'cd $CLUSTER_SCRIPT_PATH; ./$CLUSTER_SCRIPT_NAME $CI_COMMIT_TAG'
+  when: manual
+  environment:
+    name: production
+    url: https://benray.dailywarrior.ph
+  only:
+    - tags

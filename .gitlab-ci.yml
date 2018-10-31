@@ -38,13 +38,10 @@ test_commits:
   services:
     - postgres:10
 
-test:
+test_debug:
   stage: test
   script:
-    - apk add rsync
-    - echo "ARTWORK_VERSION=$CI_COMMIT_REF_NAME" > docker-image.env
-    - rsync docker-image.env $CLUSTER_USER@$CLUSTER_DOMAIN:$CLUSTER_SCRIPT_PATH/
-    - ssh $CLUSTER_USER@$CLUSTER_DOMAIN 'cd code/artwork; ./script.sh'
+    - echo $CI_COMMIT_REF_NAME
   only:
     - debug
 
@@ -62,10 +59,8 @@ push_docker:
 deploy:
   stage: deploy_container
   script:
-    - apk add rsync
-    - echo "ARTWORK_VERSION=$CI_COMMIT_REF_NAME" > docker-image.env
-    - rsync docker-image.env $CLUSTER_USER@$CLUSTER_DOMAIN:$CLUSTER_SCRIPT_PATH/
-    - ssh $CLUSTER_USER@$CLUSTER_DOMAIN 'cd code/artwork; ./script.sh'
+    - echo "Deploying $CI_COMMIT_REF_NAME"
+    - ssh -o StrictHostKeyChecking=no $CLUSTER_USER@$CLUSTER_DOMAIN "export ARTWORK_VERSION=$CI_COMMIT_REF_NAME; cd code/artwork; ./script.sh"
   when: manual
   environment:
     name: production

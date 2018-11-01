@@ -1,0 +1,33 @@
+version: "3"
+services:
+  load_balancer:
+    image: nginx
+    deploy:
+      replicas: 3
+    ports:
+      - "80:80"
+    networks:
+      - beach
+  web:
+    image: beach:swarm
+    volumes:
+      - ./secrets.json:/secrets/secret.json
+      - ./config/prod.env:/artwork/config/prod.env
+    deploy:
+      replicas: 3
+    ports:
+      - "8000:8000"
+    networks:
+      - beach
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - beach
+
+networks:
+  beach:
+
+volumes:
+  postgres_data:

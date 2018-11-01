@@ -14,6 +14,7 @@ COPY ./entrypoint.sh /artwork/
 ENV DJANGO_SETTINGS_MODULE="clever_red.settings.prod"
 # Path of service_application.json from google
 ENV GOOGLE_APPLICATION_CREDENTIALS="/secrets/secret.json"
+ENV GUNICORN_WORKERS="4"
 
 # Expose Port
 EXPOSE 8000

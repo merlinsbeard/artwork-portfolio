@@ -54,5 +54,9 @@ LOGGING = {
             'level': 'ERROR',
             'handlers': ['console'],
         },
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console']
+        }
     }
 }

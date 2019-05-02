@@ -1,11 +1,5 @@
 from .base import *
 import environ
-REST_FRAMEWORK = {
-        'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAdminUser',
-            ],
-        'PAGE_SIZE': 10
-        }
 
 EMAIL_USE_TLS=True
 

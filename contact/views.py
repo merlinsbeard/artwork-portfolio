@@ -7,6 +7,9 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
 import os
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import MeSerializer
 
 
 class IndexView(generic.TemplateView):
@@ -64,3 +67,10 @@ class MeUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.me
+
+
+class MeApiView(APIView):
+    def get(self, request, format=None):
+        me = Me.objects.get(slug="me")
+        serializer = MeSerializer(me)
+        return Response(serializer.data)

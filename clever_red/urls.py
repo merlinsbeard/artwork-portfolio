@@ -8,12 +8,10 @@ from rest_framework import routers
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^works/', include('works.urls', namespace='work')),
-    url(r'^works-api/', include('works_api.urls', namespace='work-api')),
-    #url(r'^', include('works.urls',)),
     url(r'^$', views.IndexView.as_view(), name='home'),
-    #url(r'^me/$', TemplateView.as_view(template_name="me.html"), name='me'),
     url(r'^me/', include('contact.urls', namespace='contact')),
-#    url(r'^work-api/', include(router.urls)),
-    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-admin/', include('rest_framework.urls', namespace='rest_framework')),
     url('^', include('django.contrib.auth.urls')),
+
+    url(r'^api/', include('clever_red.api')),
 ]

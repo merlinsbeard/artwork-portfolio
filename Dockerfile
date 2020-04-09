@@ -1,5 +1,8 @@
 FROM python:3.6.3
-LABEL maintainer="bjpaat@dailywarrior.ph"
+LABEL maintainer="me@benpaat.xyz"
+
+ENV PYTHONUNBUFFERED 1
+
 
 WORKDIR /artwork
 COPY requirements.txt /artwork/requirements.txt

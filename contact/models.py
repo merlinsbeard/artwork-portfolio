@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from markdown import markdown
 
 
 class Me(models.Model):
@@ -18,6 +19,12 @@ class Me(models.Model):
         full_name = "{} {}".format(
                 self.user.first_name, self.user.last_name)
         return full_name
+
+    @property
+    def long_description_html(self):
+        return markdown (
+            self.long_description
+        )
 
 
 class Contact(models.Model):

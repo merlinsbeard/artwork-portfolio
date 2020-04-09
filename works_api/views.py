@@ -10,4 +10,4 @@ class WorkViewSet(viewsets.ModelViewSet):
     """
     queryset = Work.objects.all()
     serializer_class = WorkSerializer
-
+    lookup_field = 'slug'

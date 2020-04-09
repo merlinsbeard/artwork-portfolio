@@ -10,6 +10,5 @@ urlpatterns = [
 
         url(r'^contact/$', views.contact, name='contact'),
         # /me/update
-        url(r'^update/$', views.MeUpdateView.as_view(), name='update'),
-        url(r'^api/$', views.MeApiView.as_view(), name='meapi')
+        url(r'^update/$', views.MeUpdateView.as_view(), name='update')
 ]

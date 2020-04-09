@@ -33,8 +33,10 @@ test_commits:
   script:
     - python manage.py test --settings=clever_red.settings.prod
   variables:
-    DJANGO_SETTINGS_MODULE: "clever_red.settings.prod"
-    POSTGRES_DB: "test"
+    DJANGO_SETTINGS_MODULE: clever_red.settings.prod
+    POSTGRES_DB: test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
   services:
     - postgres:10
 

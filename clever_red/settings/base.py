@@ -31,9 +31,11 @@ INSTALLED_APPS = [
     'simple_markdown_tag',
     'works_api',
     'storages',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -130,3 +132,13 @@ REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
         'PAGE_SIZE': 10
         }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]

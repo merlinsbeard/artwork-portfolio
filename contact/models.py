@@ -15,10 +15,15 @@ class Me(models.Model):
     def __str__(self):
         return self.user.first_name + self.user.last_name
 
-    def full_name(self):
+    @property
+    def name(self):
         full_name = "{} {}".format(
                 self.user.first_name, self.user.last_name)
         return full_name
+
+    @property
+    def email(self):
+        return self.user.email
 
     @property
     def long_description_html(self):

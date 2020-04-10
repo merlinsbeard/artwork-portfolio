@@ -6,11 +6,11 @@ from rest_framework import routers
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^private/a/', admin.site.urls),
     url(r'^works/', include('works.urls', namespace='work')),
     url(r'^$', views.IndexView.as_view(), name='home'),
     url(r'^me/', include('contact.urls', namespace='contact')),
-    url(r'^api-admin/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^private/api-admin/', include('rest_framework.urls', namespace='rest_framework')),
     url('^', include('django.contrib.auth.urls')),
 
     url(r'^api/', include('clever_red.api')),

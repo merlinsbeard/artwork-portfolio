@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.conf import settings
 
 
 class Work(models.Model):
@@ -23,6 +24,13 @@ class Work(models.Model):
             self.slug = slugify(self.name)
         super(Work, self).save(*args, **kwargs)
 
+    @property
+    def image_append(self):
+        image = self.image
+        if settings.DEFAULT_FILE_STORAGE == 'storages.backends.gcloud.GoogleCloudStorage':
+            return f"{settings.GS_URL}{image.name}"
+        return image.url
+
 
 class WorkImage(models.Model):
     name = models.ForeignKey(Work, related_name='images',
@@ -33,6 +41,13 @@ class WorkImage(models.Model):
     def __str__(self):
         return self.name.name + str(self.pk)
 
+    @property
+    def image_append(self):
+        image = self.image
+        if settings.DEFAULT_FILE_STORAGE == 'storages.backends.gcloud.GoogleCloudStorage':
+            return f"{settings.GS_URL}{image.name}"
+        return image.url
+
 
 class WorkTechnology(models.Model):
     work = models.ForeignKey(Work, related_name='techs', on_delete=models.CASCADE)
@@ -40,5 +55,4 @@ class WorkTechnology(models.Model):
     description = models.TextField(blank=True)
 
     def __str__(self):
-        # return self.work.name + self.name
         return self.name

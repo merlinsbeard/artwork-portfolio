@@ -5,16 +5,6 @@ stages:
   - container_push
   - deploy_container
 
-before_script:
-  - apk update
-  - apk add git openssh
-  - mkdir -p ~/.ssh
-  - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-  - ssh-keyscan -H $CLUSTER_DOMAIN > ~/.ssh/known_hosts
-  - chmod 600 -R ~/.ssh
-  - git config --global user.email "$USER_EMAIL"
-  - git config --global user.name "$USER_NAME"
-
 variables:
   GIT_SUBMODULE_STRATEGY: normal
   DOCKER_HOST: tcp://docker:2375
@@ -60,10 +50,18 @@ push_docker:
 
 deploy:
   stage: deploy_container
+  before_script:
+    - apk update
+    - apk add git openssh
+    - mkdir -p ~/.ssh
+    - echo "$PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - ssh-keyscan -H $CLUSTER_DOMAIN > ~/.ssh/known_hosts
+    - chmod 600 -R ~/.ssh
+    - git config --global user.email "$USER_EMAIL"
+    - git config --global user.name "$USER_NAME"
   script:
     - echo "Deploying $CI_COMMIT_REF_NAME"
     - ssh -o StrictHostKeyChecking=no $CLUSTER_USER@$CLUSTER_DOMAIN "export ARTWORK_VERSION=$CI_COMMIT_REF_NAME; cd code/artwork; ./script.sh"
-  when: manual
   environment:
     name: production
     url: https://benray.dailywarrior.ph

@@ -8,6 +8,6 @@ class WorkViewSet(viewsets.ModelViewSet):
     """
     API End pot
     """
-    queryset = Work.objects.all()
+    queryset = Work.objects.all().prefetch_related('images__image')
     serializer_class = WorkSerializer
     lookup_field = 'slug'
